@@ -33,27 +33,10 @@ const submitComment = async (req, res) => {
       comment: newComment,
     });
   } catch (err) {
-    res.status(500).json({ message: "Server Error" });
-  }
-};
-
-const updateComment = async (req, res) => {
-  try {
-    const { username, comment } = req.body;
-    const videoID = req.query.videoID;
-    const updatedComment = await Comment.findOneAndUpdate(
-      { username, videoID },
-      { comment },
-      { new: true }
-    );
-
-    if (!updatedComment) {
-      return res.status(404).json({ message: "Comment not found" });
-    }
-
-    res.json({ success: true, comment: updatedComment });
-  } catch (err) {
-    res.status(500).json({ message: "Server Error" });
+    res.status(500).json({
+      status: "Error",
+      message: "Server Error",
+    });
   }
 };
 

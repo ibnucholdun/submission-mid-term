@@ -43,12 +43,22 @@ const getVideoById = async (req, res) => {
     ]);
 
     if (videoData.length === 0) {
-      return res.status(404).json({ message: "Video not found" });
+      return res.status(404).json({
+        status: "Failed",
+        message: "Video not found",
+      });
     }
 
-    res.json(videoData[0]);
+    res.json({
+      status: "Success",
+      message: "Video found",
+      video: videoData[0],
+    });
   } catch (err) {
-    res.status(500).json({ message: "Server Error" });
+    res.status(500).json({
+      status: "Error",
+      message: "Server Error",
+    });
   }
 };
 
