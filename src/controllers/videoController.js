@@ -157,10 +157,36 @@ const deleteVideo = async (req, res) => {
   }
 };
 
+const getSearchVideos = async (req, res) => {
+  try {
+    const { keyword } = req.query;
+    const results = await Video.find({
+      title: { $regex: keyword, $options: "i" },
+    });
+
+    if (results.length === 0) {
+      res.status(404).json({
+        status: "Failed",
+        message: "Video Not Found",
+      });
+    } else {
+      res.json({
+        status: "Success",
+        message: "Video searched",
+        video: results,
+      });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "An error occurred while searching." });
+  }
+};
+
 module.exports = {
   getVideoById,
   getAllVideos,
   createVideo,
   updateVideo,
   deleteVideo,
+  getSearchVideos,
 };
