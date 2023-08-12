@@ -33,6 +33,7 @@ const getVideoById = async (req, res) => {
             link: 1,
             title: 1,
             price: 1,
+            urlImage: 1,
           },
           comments: {
             username: 1,
