@@ -26,7 +26,8 @@ const getVideoById = async (req, res) => {
       {
         $project: {
           videoID: 1,
-          url: 1,
+          urlVideo: 1,
+          title: 1,
           products: {
             productID: 1,
             link: 1,
