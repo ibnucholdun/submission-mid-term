@@ -81,11 +81,11 @@ const getAllVideos = async (req, res) => {
 
 const createVideo = async (req, res) => {
   try {
-    const { urlVideo, urlImageThumbnail } = req.body;
+    const { urlVideo, urlImageThumbnail, title } = req.body;
 
     const videoID = uuid.v4();
 
-    const newVideo = new Video({ videoID, urlVideo, urlImageThumbnail });
+    const newVideo = new Video({ videoID, urlVideo, urlImageThumbnail, title });
 
     await newVideo.save();
 
