@@ -3,7 +3,7 @@ const Product = require("../models/productModel");
 
 const createProduct = async (req, res) => {
   try {
-    const { link, title, price } = req.body;
+    const { link, title, price, urlImage } = req.body;
     const videoID = req.query.videoID;
     const productID = uuid.v4();
     const existingProduct = await Product.findOne({ productID });
@@ -14,7 +14,14 @@ const createProduct = async (req, res) => {
       });
     }
 
-    const newProduct = new Product({ productID, link, title, price, videoID });
+    const newProduct = new Product({
+      productID,
+      link,
+      title,
+      price,
+      videoID,
+      urlImage,
+    });
 
     await newProduct.save();
 
