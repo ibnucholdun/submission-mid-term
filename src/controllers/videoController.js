@@ -167,7 +167,7 @@ const getSearchVideos = async (req, res) => {
     });
 
     if (results.length === 0) {
-      res.status(404).json({
+      res.json({
         status: "Failed",
         message: "Video Not Found",
       });
